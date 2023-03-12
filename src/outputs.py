@@ -19,7 +19,7 @@ def control_output(results, cli_args):
 
 def default_output(results):
     for row in results:
-        print(*row)    
+        print(*row)
 
 
 def pretty_output(results):
