@@ -93,7 +93,6 @@ def download(session):
 
     with open(archive_path, 'wb') as file:
         file.write(response.content)
-    print(filename)
     logging.info(f'Архив был загружен и сохранен: {archive_path}')
 
 
@@ -138,15 +137,13 @@ def pep(session):
             if status not in EXPECTED_STATUS[status_in_column]:
                 logging.info(f'\nНесовпадающие статусы:\n{pep_link}'
                              f'\nСтатус в карточке: {status}\n'
-                             f'Ожидаемые статусы: '
+                             'Ожидаемые статусы: '
                              f'{EXPECTED_STATUS[status_in_column]}')
             status_count[status] += 1
     total = 0
-    for key, val in status_count.items():
-        results.append(
-            (key, val)
-        )
-        total += val
+    results.extend(status_count.items())
+    for count in status_count.values():
+        total += count
     results.append(('Total', total))
     return results
 
