@@ -140,10 +140,8 @@ def pep(session):
                              'Ожидаемые статусы: '
                              f'{EXPECTED_STATUS[status_in_column]}')
             status_count[status] += 1
-    total = 0
     results.extend(status_count.items())
-    for count in status_count.values():
-        total += count
+    total = sum(status_count.values())
     results.append(('Total', total))
     return results
 
